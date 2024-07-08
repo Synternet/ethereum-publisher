@@ -11,6 +11,7 @@ import (
 	"github.com/synternet/data-layer-sdk/pkg/network"
 	"github.com/synternet/data-layer-sdk/pkg/options"
 	"github.com/synternet/data-layer-sdk/pkg/service"
+	"github.com/synternet/data-layer-sdk/pkg/user"
 
 	svc "github.com/synternet/ethereum-publisher/internal/service"
 	"github.com/synternet/ethereum-publisher/pkg/ipc"
@@ -52,9 +53,9 @@ func main() {
 	// Sacrifice some security for the sake of user experience by allowing to
 	// supply NATS account NKey instead of passing created user NKey and user JWS.
 	if *flagNatsAccNkey != "" {
-		nkey, jwt, err := options.CreateUser(*flagNatsAccNkey)
-		flagNatsNkey = nkey
-		flagNatsJwt = jwt
+		nkey, jwt, err := user.CreateCreds([]byte(*flagNatsAccNkey))
+		flagNatsNkey = &nkey
+		flagNatsJwt = &jwt
 
 		if err != nil {
 			panic(fmt.Errorf("failed to generate user JWT: %w", err))

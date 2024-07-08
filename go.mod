@@ -9,7 +9,7 @@ require (
 	github.com/hashicorp/golang-lru/v2 v2.0.2
 	github.com/json-iterator/go v1.1.12
 	github.com/nats-io/nats.go v1.35.0
-	github.com/synternet/data-layer-sdk v0.3.1
+	github.com/synternet/data-layer-sdk v0.4.1
 )
 
 require (
